@@ -1,7 +1,7 @@
 import folium
 import pandas as pd
 
-dataframe = pd.read_json("WGTN_Sculptures/data/sculpture.json", encoding="latin-1")
+dataframe = pd.read_json("data/sculpture.json", encoding="latin-1")
 m = folium.Map(location=[-41.29, 174.78], zoom_start=14)
 
 for _, row in dataframe.iterrows():
