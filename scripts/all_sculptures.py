@@ -2,6 +2,7 @@ import folium
 import branca
 import pandas as pd
 from folium import Element
+from folium.plugins import Search
 
 # Reading data and creating map object:
 dataframe = pd.read_csv("WGTN-Sculptures/data/sculpture_database.csv")
@@ -97,26 +98,12 @@ css = """
     .desc {
         padding-top: 15px;
     }
-
 """
 
-description = """
+# Feature Group for map markers:
+fg = folium.FeatureGroup(name="Sculptures").add_to(m)
 
-    Mary-Louise Browne lives in Auckland and has exhibited widely throughout New Zealand. She has developed several public art commissions. 
-
-    Words are the recurring subject of her work as she explores the power of language. Mary-Louise’s works challenge conventional readings and demonstrate how apparently simple words or maxims can have multiple layers of meaning. 
-
-    Although the staircase will be reminiscent of memorials, and there is an obvious allusion to immortality and an afterlife, on this site it is positioned as an invitation to climb and to read.
-
-"""
-
-# details:
-year = "2013"
-site = "Midland Park, Lambton Quay"
-attributes = "Marine grade 316 stainless steel / H 3300mm"
-
-image = "WGTN-Sculptures/images/Woman of Words.jpg"
-
+# Creating map marker from each row of data:
 for _, row in dataframe.iterrows():
 
     # Grabbing information for popup display:
@@ -173,17 +160,29 @@ for _, row in dataframe.iterrows():
     )
     popup = folium.Popup(iframe, max_width=700)
 
-    # Adding marker:
+    # Determining color of marker:
     marker_color = 'green'  # Default color (Wellington city walk)
     match collection:
         case "Botanic Garden Walk":
             marker_color = 'cadetblue'
         case "The Meridian Energy Wind Sculpture Walk":
             marker_color = 'lightred'
+    
+    # Create marker and add to feature group:
     folium.Marker(
         icon=folium.Icon(color=marker_color, icon='eye-open'),
         location=[row["y"], row["x"]],
         popup=popup,
-    ).add_to(m)
+        title=title,
+        tooltip=title
+    ).add_to(fg)
+
+# Sculptures search bar:
+Search(
+    layer=fg,
+    search_label="title",
+    placeholder="Search sculptures",
+    collapsed=False
+).add_to(m)
 
 m.save("wellington_sculptures.html")
