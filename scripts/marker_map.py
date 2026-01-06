@@ -4,7 +4,7 @@ import pandas as pd
 from folium import Element
 
 # Reading data and creating map object:
-dataframe = pd.read_json("WGTN-Sculptures/data/sculpture.json", encoding="latin-1")
+dataframe = pd.read_csv("WGTN-Sculptures/data/sculpture_database.csv")
 m = folium.Map(
         location=[-41.29, 174.78], 
         zoom_start=14,
@@ -25,10 +25,10 @@ legend_html = """
             font-family: Arial, sans-serif;
             font-size: 18px;
         ">
-            <b>Legend</b><br>
-            <span style="color: DarkOliveGreen;">&#9679;</span> Permanent<br>
-            <span style="color: DarkKhaki;">&#9679;</span> Temporary (Current)<br>
-            <span style="color: LightCoral;">&#9679;</span> Temporary (Retired)
+            <b>Collections:</b><br>
+            <span style="color: #72b127;">&#9679;</span> Wellington City Walk<br>
+            <span style="color: #446979;">&#9679;</span> Botanic Garden Walk<br>
+            <span style="color: #ff8e7f;">&#9679;</span> The Meridian Energy Wind Sculpture Walk
         </div>
     """
 m.get_root().html.add_child(Element(legend_html))
@@ -39,21 +39,63 @@ css = """
     body {
         font-family: "Helvetica Neue", Helvetica, sans-serif;
     }
+
     .sculpture-popup {
         padding: 8px;
     }
 
+    .sculpture-popup img {
+        max-width: 380px;
+        min-width: 380px;
+        max-height: 230px;
+        min-height: 230px;
+        padding-left: 12px;
+        object-fit: cover;
+    }
+
     .title-and-artist {
-        line-height: 0.5px;
+        padding-top: -40px;
+        line-height: 30px;
     }
 
     .title {
         font-size: 30px;
         font-weight: bold;
+        margin: 0 0 8px 0;
     }
 
     .artist {
         font-size: 20px;
+        margin-top: -5px;
+    }
+
+    .details {
+        margin-top: -35px;
+    }
+
+    .details p {
+        margin-top: -10px;
+        font-style: italic;
+        line-height: 20px;
+    }
+
+    .columns {
+        display: flex;
+    }
+
+    .column1 {
+        max-width: 275px;
+        float: left;
+    }
+
+    .column2 {
+        max-width: 275px;
+        float: right;
+        justify-content: right;
+    }
+
+    .desc {
+        padding-top: 15px;
     }
 
 """
@@ -68,19 +110,26 @@ description = """
 
 """
 
-details = """
+# details:
+year = "2013"
+site = "Midland Park, Lambton Quay"
+attributes = "Marine grade 316 stainless steel / H 3300mm"
 
-    1996<br>
-    Granite / 7000 x 1000mm<br>
-    Norwood Path, Botanic Garden<br>
-
-"""
+image = "WGTN-Sculptures/images/Woman of Words.jpg"
 
 for _, row in dataframe.iterrows():
 
     # Grabbing information for popup display:
-    sculpture = row['sculpture']
+    title = row['title']
     artist = row['artist']
+    year = row['year']
+    site = row['site']
+    attributes = row['attributes']
+    description = row['description']
+    image_url = row['image']
+    web_link = row['web_link']
+    map_link = row['map_link']
+    collection = row['collection']
 
     # Creating html display when marker is clicked:
     html = f"""
@@ -92,12 +141,25 @@ for _, row in dataframe.iterrows():
             </head>
             <body>
                 <div class="sculpture-popup">
-                    <div class="title-and-artist">
-                        <p class="title">{sculpture}</p>
-                        <p class="artist">{artist}</p>
+                    <div class="columns">
+                        <div class="column1">
+                            <div class="title-and-artist">
+                                <p class="title">{title}</p>
+                                <p class="artist">{artist}</p> <br>
+                            </div>
+                            <div class="details">
+                                    <p>{year}</p>
+                                    <p>{site}</p>
+                                    <p>{attributes}</p>
+                            </div>
+                        </div>
+                        <div class="column2">
+                            <img src="{image_url}" alt="Sculpture image ({artist} - {title})">
+                        </div>
                     </div>
                     <p class="desc">{description}</p>
-                    <p class="details">{details}</p>
+                    <a href="{web_link}" target="_blank">Website</a>
+                    <a href="{map_link}" target="_blank">Google Maps</a>
                 </div>
             </body>
         </html>
@@ -106,14 +168,20 @@ for _, row in dataframe.iterrows():
     # Creating iframe + popup
     iframe = branca.element.IFrame(
         html=html,
-        width=500,
-        height=300
+        width=700,
+        height=400
     )
-    popup = folium.Popup(iframe, max_width=500)
+    popup = folium.Popup(iframe, max_width=700)
 
     # Adding marker:
+    marker_color = 'green'  # Default color (Wellington city walk)
+    match collection:
+        case "Botanic Garden Walk":
+            marker_color = 'cadetblue'
+        case "The Meridian Energy Wind Sculpture Walk":
+            marker_color = 'lightred'
     folium.Marker(
-        icon=folium.Icon(color='green', icon='eye-open'),
+        icon=folium.Icon(color=marker_color, icon='eye-open'),
         location=[row["y"], row["x"]],
         popup=popup,
     ).add_to(m)
