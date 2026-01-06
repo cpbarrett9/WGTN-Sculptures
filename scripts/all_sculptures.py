@@ -16,7 +16,7 @@ m = folium.Map(
 legend_html = """
         <div style="
             position: fixed;
-            bottom: 12px;
+            bottom: 60px;
             left: 12px;
             z-index: 9999;
             background-color: white;
@@ -29,7 +29,22 @@ legend_html = """
             <b>Collections:</b><br>
             <span style="color: #72b127;">&#9679;</span> Wellington City Walk<br>
             <span style="color: #446979;">&#9679;</span> Botanic Garden Walk<br>
-            <span style="color: #ff8e7f;">&#9679;</span> The Meridian Energy Wind Sculpture Walk
+            <span style="color: #ff8e7f;">&#9679;</span> The Meridian Energy Wind Sculpture Walk<br>
+            
+        </div>
+        <div style="
+            position: fixed;
+            bottom: 12px;
+            left: 12px;
+            z-index: 9999;
+            background-color: white;
+            padding: 10px 10px;
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(0,0,0,0.3);
+            font-family: Arial, sans-serif;
+            font-size: 18px;
+        ">
+            <div style="font-size: 12px;">Materials courtesy of the <a href="https://www.sculpture.org.nz/" target="_blank">Wellington Sculpture Trust</a>.</div>
         </div>
     """
 m.get_root().html.add_child(Element(legend_html))
@@ -167,6 +182,8 @@ for _, row in dataframe.iterrows():
             marker_color = 'cadetblue'
         case "The Meridian Energy Wind Sculpture Walk":
             marker_color = 'lightred'
+        case _:
+            pass
     
     # Create marker and add to feature group:
     folium.Marker(
