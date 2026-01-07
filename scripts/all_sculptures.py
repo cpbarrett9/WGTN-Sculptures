@@ -24,6 +24,10 @@ m = folium.Map(
 legend = elements.get_legend()
 m.get_root().html.add_child(Element(legend))
 
+# Creating and adding attribution to map:
+attribution = elements.get_attribution()
+m.get_root().html.add_child(Element(attribution))
+
 # CSS Styling for map marker popups:
 css = elements.get_popup_css()
 

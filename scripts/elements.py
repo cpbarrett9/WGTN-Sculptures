@@ -25,22 +25,27 @@ def get_legend():
             <span style="color: #446979;">&#9679;</span> Botanic Garden Walk<br>
             <span style="color: #ff8e7f;">&#9679;</span> The Meridian Energy Wind Sculpture Walk<br>
             
-        </div>
-        <div style="
-            position: fixed;
-            bottom: 12px;
-            left: 12px;
-            z-index: 9999;
-            background-color: white;
-            padding: 10px 10px;
-            border-radius: 5px;
-            box-shadow: 0 0 5px rgba(0,0,0,0.3);
-            font-family: Arial, sans-serif;
-            font-size: 18px;
-        ">
-            <div style="font-size: 12px;">Materials courtesy of the <a href="https://www.sculpture.org.nz/" target="_blank">Wellington Sculpture Trust</a>.</div>
-        </div>
-    
+    </div>   
+    """
+
+def get_attribution():
+    return """
+
+    <div style="
+        position: fixed;
+        bottom: 12px;
+        left: 12px;
+        z-index: 9999;
+        background-color: white;
+        padding: 10px 10px;
+        border-radius: 5px;
+        box-shadow: 0 0 5px rgba(0,0,0,0.3);
+        font-family: Arial, sans-serif;
+        font-size: 18px;
+    ">
+        <div style="font-size: 12px;">Materials courtesy of the <a href="https://www.sculpture.org.nz/" target="_blank">Wellington Sculpture Trust</a>.</div>
+    </div>
+
     """
 
 # Returns the standard style sheet for sculpture popups. Used by multiple maps.
@@ -109,4 +114,32 @@ def get_popup_css():
         padding-top: 15px;
     }
 
+    """
+
+# Returns a mini version of a webpage embedded on the left side of the map:
+def web_frame_html(page: str):
+    return f"""
+        <div style="{web_frame_css()}">
+            <iframe 
+                src="{page}"
+                style="
+                    width: 100%;
+                    height: 470px;
+                    border: none;
+                "
+            ></iframe>
+        </div>
+    """
+
+# Returns CSS for embedded webapge:
+def web_frame_css():
+    return """
+        position: fixed;
+        width: 300px;
+        height: 470px;
+        left: 12px;
+        top: 170px;
+        z-index: 9999;
+        background: white;
+        box-shadow: 0 0 5px rgba(0,0,0,0.3);
     """

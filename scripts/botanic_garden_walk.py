@@ -16,14 +16,18 @@ map_name = "botanic_garden_walk"
 # Reading data and creating map object:
 dataframe = pd.read_csv("WGTN-Sculptures/data/sculpture_database.csv")
 m = folium.Map(
-        location=[-41.28, 174.768], 
+        location=[-41.2825, 174.768], 
         zoom_start=17,
         tiles='CartoDB Positron'
     )
 
-# Creating and adding legend to map:
-legend = elements.get_legend()
-m.get_root().html.add_child(Element(legend))
+# Creating and adding Wellington Sculpture Trust web page as iframe:
+garden_walk_page_html = elements.web_frame_html("https://www.sculpture.org.nz/walks/botanic-garden-walk#content-wrap")
+m.get_root().html.add_child(Element(garden_walk_page_html))
+
+# Creating and adding attribution panel:
+attribution = elements.get_attribution()
+m.get_root().html.add_child(Element(attribution))
 
 # CSS Styling for map marker popups:
 css = elements.get_popup_css()
