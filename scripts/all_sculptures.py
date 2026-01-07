@@ -13,7 +13,7 @@ import elements
 # Reading data and creating map object:
 dataframe = pd.read_csv("WGTN-Sculptures/data/sculpture_database.csv")
 m = folium.Map(
-        location=[-41.29, 174.78], 
+        location=[-41.296, 174.78], 
         zoom_start=14,
         tiles='CartoDB Positron'
     )
