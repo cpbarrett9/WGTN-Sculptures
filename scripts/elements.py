@@ -161,7 +161,7 @@ def web_frame_css():
         width: 300px;
         height: 470px;
         left: 12px;
-        top: 170px;
+        bottom: 60px;
         z-index: 500;
         border-radius: 5px;
         background: white;
