@@ -21,6 +21,10 @@ m = folium.Map(
         tiles='CartoDB Positron'
     )
 
+# Creating an adding navigation bar to page:
+nav = elements.nav_bar()
+m.get_root().html.add_child(Element(nav))
+
 # Creating and adding Wellington Sculpture Trust web page as iframe:
 garden_walk_page_html = elements.web_frame_html("https://www.sculpture.org.nz/walks/botanic-garden-walk#content-wrap")
 m.get_root().html.add_child(Element(garden_walk_page_html))

@@ -4,6 +4,7 @@ import pandas as pd
 from folium import Element
 from folium.plugins import Search
 import elements
+from folium.plugins import LocateControl
 
 #
 #   'all_sculptures': Map of all sculptures commissioned by the Wellington Sculpture Trust.
@@ -20,9 +21,15 @@ m = folium.Map(
         tiles='CartoDB Positron'
     )
 
-# Creating and adding legend to map:
-legend = elements.get_legend()
-m.get_root().html.add_child(Element(legend))
+# Creating and adding Wellington Sculpture Trust web page as iframe:
+web_page_html = elements.web_frame_html("https://www.sculpture.org.nz/about-the-trust/overview#content-wrap")
+m.get_root().html.add_child(Element(web_page_html))
+
+# Live location:
+LocateControl(
+    auto_start=False,
+    setView=False
+).add_to(m)
 
 # Creating and adding attribution to map:
 attribution = elements.get_attribution()

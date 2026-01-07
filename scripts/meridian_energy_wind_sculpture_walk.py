@@ -7,7 +7,7 @@ import elements
 from folium.plugins import LocateControl
 
 #
-#   'botanic_garden_walk': Map of sculptures specific to the Botanic Garden Walk sculpture collection.
+#   'meridian_energy_wind_sculpture_walk': Map of sculptures specific to the Wind sculpture collection.
 #   Includes a the suggested path + live location of the user.
 #
 
@@ -20,6 +20,10 @@ m = folium.Map(
         zoom_start=16,
         tiles='CartoDB Positron'
     )
+
+# Creating an adding navigation bar to page:
+nav = elements.nav_bar()
+m.get_root().html.add_child(Element(nav))
 
 # Creating and adding Wellington Sculpture Trust web page as iframe:
 info_page_html = elements.web_frame_html("https://www.sculpture.org.nz/walks/the-meridian-energy-wind-sculpture-walk#content-wrap")

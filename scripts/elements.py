@@ -10,8 +10,8 @@ def get_legend():
 
     <div style="
             position: fixed;
-            bottom: 60px;
-            left: 12px;
+            top: 60px;
+            right: 12px;
             z-index: 9999;
             background-color: white;
             padding: 10px 15px;
@@ -42,8 +42,9 @@ def get_attribution():
         box-shadow: 0 0 5px rgba(0,0,0,0.3);
         font-family: Arial, sans-serif;
         font-size: 18px;
+        width: 300px;
     ">
-        <div style="font-size: 12px;">Materials courtesy of the <a href="https://www.sculpture.org.nz/" target="_blank">Wellington Sculpture Trust</a>.</div>
+        <div style="font-size: 12px;">Data gathered from the <a href="https://www.sculpture.org.nz/" target="_blank">Wellington Sculpture Trust</a>.</div>
     </div>
 
     """
@@ -159,7 +160,11 @@ def nav_bar():
             font-family: Arial, sans-serif;
             font-size: 18px;
         ">
-        <div style="font-size: 12px;">
-            <a href="https://www.sculpture.org.nz/" target="_blank">Home</a>.</div>
+            <div style="font-size: 12px;">
+                <span style="color: #FFFFFF;">&#9679;</span> <a href="all_sculptures.html">All Sculptures</a><br>
+                <span style="color: #72b127;">&#9679;</span> <a href="wellington_city_walk.html">Wellington City Walk</a><br>
+                <span style="color: #446979;">&#9679;</span> <a href="botanic_garden_walk.html">Botanic Garden Walk</a><br>
+                <span style="color: #ff8e7f;">&#9679;</span> <a href="meridian_energy_wind_sculpture_walk.html">Meridian Energy Wind Sculpture Walk</a><br>
+            </div>
         </div>
     """
