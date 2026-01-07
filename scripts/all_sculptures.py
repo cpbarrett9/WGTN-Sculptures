@@ -28,6 +28,10 @@ m.get_root().html.add_child(Element(legend))
 attribution = elements.get_attribution()
 m.get_root().html.add_child(Element(attribution))
 
+# Creating an adding navigation bar to page:
+nav = elements.nav_bar()
+m.get_root().html.add_child(Element(nav))
+
 # CSS Styling for map marker popups:
 css = elements.get_popup_css()
 

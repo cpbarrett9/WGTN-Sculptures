@@ -140,6 +140,26 @@ def web_frame_css():
         left: 12px;
         top: 170px;
         z-index: 9999;
+        border-radius: 5px;
         background: white;
         box-shadow: 0 0 5px rgba(0,0,0,0.3);
+    """
+
+def nav_bar():
+    return """
+        <div style="
+            position: fixed;
+            top: 12px;
+            right: 12px;
+            z-index: 9999;
+            background-color: white;
+            padding: 10px 10px;
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(0,0,0,0.3);
+            font-family: Arial, sans-serif;
+            font-size: 18px;
+        ">
+        <div style="font-size: 12px;">
+            <a href="https://www.sculpture.org.nz/" target="_blank">Home</a>.</div>
+        </div>
     """
