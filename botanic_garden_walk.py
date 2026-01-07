@@ -132,7 +132,7 @@ for _, row in dataframe.iterrows():
         iframe = branca.element.IFrame(
             html=html,
             width=700,
-            height=400
+            height=400,
         )
         popup = folium.Popup(iframe, max_width=700)
 
