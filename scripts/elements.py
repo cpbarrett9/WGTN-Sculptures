@@ -4,7 +4,28 @@
 #   Cleans up scripts that might otherwise be bogged down by long strings.
 #
 
-# Returns a legend of colors and their corresponding sculpture collections. Used by 'all_sculptures' map.
+# Returns CSS that should go to the top of every (or many) map pages.
+# - Sends search bar to top of Z-index so things don't overlap it
+# - Styling for icon links at the bottom of popups
+def global_css():
+    return """
+    <style>
+        .leaflet-control-search {
+            z-index: 10000 !important;
+        }
+    </style>
+    """
+
+def remove_underline():
+    return """
+
+            .icon-links a {
+            text-decoration: none;
+        }
+
+    """
+
+# Returns a legend of colors and their corresponding sculpture collections. Used by 'all_sculptures' map:
 def get_legend():
     return """
 
@@ -28,6 +49,7 @@ def get_legend():
     </div>   
     """
 
+# Returns the attribution panel (links to Wellington Sculpture Trust website):
 def get_attribution():
     return """
 
@@ -140,12 +162,13 @@ def web_frame_css():
         height: 470px;
         left: 12px;
         top: 170px;
-        z-index: 9999;
+        z-index: 500;
         border-radius: 5px;
         background: white;
         box-shadow: 0 0 5px rgba(0,0,0,0.3);
     """
 
+# Returns navigation bar element. Used on all maps.
 def nav_bar():
     return """
         <div style="

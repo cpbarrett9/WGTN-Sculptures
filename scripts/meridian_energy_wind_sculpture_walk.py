@@ -36,6 +36,12 @@ m.get_root().html.add_child(Element(attribution))
 # CSS Styling for map marker popups:
 css = elements.get_popup_css()
 
+# Live location:
+LocateControl(
+    auto_start=True,
+    setView=False
+).add_to(m)
+
 # Feature Group for map markers:
 fg = folium.FeatureGroup(name="Sculptures").add_to(m)
 
@@ -148,12 +154,6 @@ folium.plugins.AntPath(
     opacity=0.5,
     color="orange",
     delay=6000
-).add_to(m)
-
-# Live location:
-LocateControl(
-    auto_start=True,
-    setView=False
 ).add_to(m)
 
 # Export map to html file:

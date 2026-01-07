@@ -33,6 +33,12 @@ m.get_root().html.add_child(Element(garden_walk_page_html))
 attribution = elements.get_attribution()
 m.get_root().html.add_child(Element(attribution))
 
+# Live location:
+LocateControl(
+    auto_start=True,
+    setView=False
+).add_to(m)
+
 # CSS Styling for map marker popups:
 css = elements.get_popup_css()
 
@@ -182,12 +188,6 @@ folium.plugins.AntPath(
     opacity=0.5,
     color="green",
     delay=6000
-).add_to(m)
-
-# Live location:
-LocateControl(
-    auto_start=True,
-    setView=False
 ).add_to(m)
 
 # Export map to html file:
