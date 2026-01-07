@@ -41,6 +41,10 @@ m.get_root().html.add_child(Element(attribution))
 # CSS Styling for map marker popups:
 css = elements.get_popup_css()
 
+# Global CSS:
+global_css = elements.global_css()
+m.get_root().html.add_child(Element(global_css))
+
 # Live location:
 LocateControl(
     auto_start=True,

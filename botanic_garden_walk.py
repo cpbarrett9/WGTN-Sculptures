@@ -34,6 +34,10 @@ m.get_root().html.add_child(Element(nav))
 garden_walk_page_html = elements.web_frame_html("https://www.sculpture.org.nz/walks/botanic-garden-walk#content-wrap")
 m.get_root().html.add_child(Element(garden_walk_page_html))
 
+# Global CSS:
+global_css = elements.global_css()
+m.get_root().html.add_child(Element(global_css))
+
 # Creating and adding attribution panel:
 attribution = elements.get_attribution()
 m.get_root().html.add_child(Element(attribution))

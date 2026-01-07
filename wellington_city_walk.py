@@ -38,6 +38,10 @@ m.get_root().html.add_child(Element(garden_walk_page_html))
 attribution = elements.get_attribution()
 m.get_root().html.add_child(Element(attribution))
 
+# Global CSS:
+global_css = elements.global_css()
+m.get_root().html.add_child(Element(global_css))
+
 # Live location:
 LocateControl(
     auto_start=True,

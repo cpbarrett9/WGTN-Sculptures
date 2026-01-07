@@ -18,6 +18,11 @@ def global_css():
         .leaflet-control-search {
             z-index: 10000 !important;
         }
+        @media only screen and (max-width: 870px) {
+            .web-panel {
+                display: none;
+            }
+        }
     </style>
     """
 
@@ -147,7 +152,7 @@ def get_popup_css():
 # Returns a mini version of a webpage embedded on the left side of the map:
 def web_frame_html(page: str):
     return f"""
-        <div style="{web_frame_css()}">
+        <div style="{web_frame_css()}" class="web-panel">
             <iframe 
                 src="{page}"
                 style="
