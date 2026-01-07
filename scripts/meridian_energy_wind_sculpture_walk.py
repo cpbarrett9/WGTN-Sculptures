@@ -92,8 +92,32 @@ for _, row in dataframe.iterrows():
                             </div>
                         </div>
                         <p class="desc">{description}</p>
-                        <a href="{web_link}" target="_blank">Website</a>
-                        <a href="{map_link}" target="_blank">Google Maps</a>
+                        <style>
+                            {elements.remove_underline()}
+                        </style>
+                        <div class="icon-links">
+                            <a href="{web_link}" target="_blank">
+                                <svg xmlns="http://www.w3.org/2000/svg"
+                                    width="24" height="24" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round"
+                                    class="lucide lucide-square-arrow-out-up-right-icon lucide-square-arrow-out-up-right">
+                                    <path d="M21 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h6"></path>
+                                    <path d="m21 3-9 9"></path>
+                                    <path d="M15 3h6v6"></path>
+                                </svg>
+                                </a><a href="{map_link}" target="_blank">
+                                <svg xmlns="http://www.w3.org/2000/svg"
+                                    width="24" height="24" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round"
+                                    class="lucide lucide-map-icon lucide-map">
+                                    <path d="M14.106 5.553a2 2 0 0 0 1.788 0l3.659-1.83A1 1 0 0 1 21 4.619v12.764a1 1 0 0 1-.553.894l-4.553 2.277a2 2 0 0 1-1.788 0l-4.212-2.106a2 2 0 0 0-1.788 0l-3.659 1.83A1 1 0 0 1 3 19.381V6.618a1 1 0 0 1 .553-.894l4.553-2.277a2 2 0 0 1 1.788 0z"></path>
+                                    <path d="M15 5.764v15"></path>
+                                    <path d="M9 3.236v15"></path>
+                                </svg>
+                            </a>
+                        </div>
                     </div>
                 </body>
             </html>
