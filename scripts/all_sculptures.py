@@ -3,6 +3,12 @@ import branca
 import pandas as pd
 from folium import Element
 from folium.plugins import Search
+import elements
+
+#
+#   'all_sculptures': Map of all sculptures commissioned by the Wellington Sculpture Trust.
+#   Markers are color-coded by the collection/art walk they belong to.
+#
 
 # Reading data and creating map object:
 dataframe = pd.read_csv("WGTN-Sculptures/data/sculpture_database.csv")
@@ -13,107 +19,11 @@ m = folium.Map(
     )
 
 # Creating and adding legend to map:
-legend_html = """
-        <div style="
-            position: fixed;
-            bottom: 60px;
-            left: 12px;
-            z-index: 9999;
-            background-color: white;
-            padding: 10px 15px;
-            border-radius: 5px;
-            box-shadow: 0 0 5px rgba(0,0,0,0.3);
-            font-family: Arial, sans-serif;
-            font-size: 18px;
-        ">
-            <b>Collections:</b><br>
-            <span style="color: #72b127;">&#9679;</span> Wellington City Walk<br>
-            <span style="color: #446979;">&#9679;</span> Botanic Garden Walk<br>
-            <span style="color: #ff8e7f;">&#9679;</span> The Meridian Energy Wind Sculpture Walk<br>
-            
-        </div>
-        <div style="
-            position: fixed;
-            bottom: 12px;
-            left: 12px;
-            z-index: 9999;
-            background-color: white;
-            padding: 10px 10px;
-            border-radius: 5px;
-            box-shadow: 0 0 5px rgba(0,0,0,0.3);
-            font-family: Arial, sans-serif;
-            font-size: 18px;
-        ">
-            <div style="font-size: 12px;">Materials courtesy of the <a href="https://www.sculpture.org.nz/" target="_blank">Wellington Sculpture Trust</a>.</div>
-        </div>
-    """
-m.get_root().html.add_child(Element(legend_html))
+legend = elements.get_legend()
+m.get_root().html.add_child(Element(legend))
 
 # CSS Styling for map marker popups:
-css = """
-
-    body {
-        font-family: "Helvetica Neue", Helvetica, sans-serif;
-    }
-
-    .sculpture-popup {
-        padding: 8px;
-    }
-
-    .sculpture-popup img {
-        max-width: 380px;
-        min-width: 380px;
-        max-height: 230px;
-        min-height: 230px;
-        padding-left: 12px;
-        object-fit: cover;
-    }
-
-    .title-and-artist {
-        padding-top: -40px;
-        line-height: 30px;
-    }
-
-    .title {
-        font-size: 30px;
-        font-weight: bold;
-        margin: 0 0 8px 0;
-    }
-
-    .artist {
-        font-size: 20px;
-        margin-top: -5px;
-    }
-
-    .details {
-        margin-top: -35px;
-    }
-
-    .details p {
-        margin-top: -10px;
-        font-style: italic;
-        line-height: 20px;
-    }
-
-    .columns {
-        display: flex;
-    }
-
-    .column1 {
-        max-width: 275px;
-        float: left;
-    }
-
-    .column2 {
-        max-width: 275px;
-        float: right;
-        justify-content: right;
-    }
-
-    .desc {
-        padding-top: 15px;
-    }
-"""
+css = elements.get_popup_css()
 
 # Feature Group for map markers:
 fg = folium.FeatureGroup(name="Sculptures").add_to(m)
@@ -202,4 +112,5 @@ Search(
     collapsed=False
 ).add_to(m)
 
+# Export map to html file:
 m.save("wellington_sculptures.html")
