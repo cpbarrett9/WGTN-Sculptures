@@ -10,6 +10,8 @@ import elements
 #   Markers are color-coded by the collection/art walk they belong to.
 #
 
+map_name = "all_sculptures"
+
 # Reading data and creating map object:
 dataframe = pd.read_csv("WGTN-Sculptures/data/sculpture_database.csv")
 m = folium.Map(
@@ -113,4 +115,4 @@ Search(
 ).add_to(m)
 
 # Export map to html file:
-m.save("wellington_sculptures.html")
+m.save(f"{map_name}.html")
