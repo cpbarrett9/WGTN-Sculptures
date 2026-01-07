@@ -1,3 +1,4 @@
+from pathlib import Path
 import folium
 import branca
 import pandas as pd
@@ -13,8 +14,12 @@ from folium.plugins import LocateControl
 
 map_name = "meridian_energy_wind_sculpture_walk"
 
+# Getting correct CSV path:
+BASE_DIR = Path(__file__).resolve().parent
+CSV_PATH = BASE_DIR / "data" / "sculpture_database.csv"
+
 # Reading data and creating map object:
-dataframe = pd.read_csv("WGTN-Sculptures/data/sculpture_database.csv")
+dataframe = pd.read_csv(CSV_PATH)
 m = folium.Map(
         location=[-41.3150, 174.8021], 
         zoom_start=16,

@@ -189,7 +189,7 @@ def nav_bar():
             font-size: 18px;
         ">
             <div style="font-size: 12px;">
-                <span style="color: #FFFFFF;">&#9679;</span> <a href="all_sculptures.html">All Sculptures</a><br>
+                <span style="color: #FFFFFF;">&#9679;</span> <a href="index.html">All Sculptures</a><br>
                 <span style="color: #72b127;">&#9679;</span> <a href="wellington_city_walk.html">Wellington City Walk</a><br>
                 <span style="color: #446979;">&#9679;</span> <a href="botanic_garden_walk.html">Botanic Garden Walk</a><br>
                 <span style="color: #ff8e7f;">&#9679;</span> <a href="meridian_energy_wind_sculpture_walk.html">Meridian Energy Wind Sculpture Walk</a><br>
