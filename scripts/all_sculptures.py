@@ -13,149 +13,154 @@ from folium.plugins import LocateControl
 
 map_name = "all_sculptures"
 
-# Reading data and creating map object:
-dataframe = pd.read_csv("WGTN-Sculptures/data/sculpture_database.csv")
-m = folium.Map(
-        location=[-41.296, 174.78], 
-        zoom_start=14,
-        tiles='CartoDB Positron'
-    )
+def build_map() -> folium.map:
+    # Reading data and creating map object:
+    dataframe = pd.read_csv("WGTN-Sculptures/data/sculpture_database.csv")
+    m = folium.Map(
+            location=[-41.296, 174.78], 
+            zoom_start=14,
+            tiles='CartoDB Positron'
+        )
 
-# Creating and adding Wellington Sculpture Trust web page as iframe:
-web_page_html = elements.web_frame_html("https://www.sculpture.org.nz/about-the-trust/overview#content-wrap")
-m.get_root().html.add_child(Element(web_page_html))
+    # Creating and adding Wellington Sculpture Trust web page as iframe:
+    web_page_html = elements.web_frame_html("https://www.sculpture.org.nz/about-the-trust/overview#content-wrap")
+    m.get_root().html.add_child(Element(web_page_html))
 
-# Live location:
-LocateControl(
-    auto_start=False,
-    setView=False
-).add_to(m)
+    # Live location:
+    LocateControl(
+        auto_start=False,
+        setView=False
+    ).add_to(m)
 
-# Global CSS:
-global_css = elements.global_css()
-m.get_root().html.add_child(Element(global_css))
+    # Global CSS:
+    global_css = elements.global_css()
+    m.get_root().html.add_child(Element(global_css))
 
-# Creating and adding attribution to map:
-attribution = elements.get_attribution()
-m.get_root().html.add_child(Element(attribution))
+    # Creating and adding attribution to map:
+    attribution = elements.get_attribution()
+    m.get_root().html.add_child(Element(attribution))
 
-# Creating an adding navigation bar to page:
-nav = elements.nav_bar()
-m.get_root().html.add_child(Element(nav))
+    # Creating an adding navigation bar to page:
+    nav = elements.nav_bar()
+    m.get_root().html.add_child(Element(nav))
 
-# CSS Styling for map marker popups:
-css = elements.get_popup_css()
+    # CSS Styling for map marker popups:
+    css = elements.get_popup_css()
 
-# Feature Group for map markers:
-fg = folium.FeatureGroup(name="Sculptures").add_to(m)
+    # Feature Group for map markers:
+    fg = folium.FeatureGroup(name="Sculptures").add_to(m)
 
-# Creating map marker from each row of data:
-for _, row in dataframe.iterrows():
+    # Creating map marker from each row of data:
+    for _, row in dataframe.iterrows():
 
-    # Grabbing information for popup display:
-    title = row['title']
-    artist = row['artist']
-    year = row['year']
-    site = row['site']
-    attributes = row['attributes']
-    description = row['description']
-    image_url = row['image']
-    web_link = row['web_link']
-    map_link = row['map_link']
-    collection = row['collection']
+        # Grabbing information for popup display:
+        title = row['title']
+        artist = row['artist']
+        year = row['year']
+        site = row['site']
+        attributes = row['attributes']
+        description = row['description']
+        image_url = row['image']
+        web_link = row['web_link']
+        map_link = row['map_link']
+        collection = row['collection']
 
-    # Creating html display when marker is clicked:
-    html = f"""
-        <html>
-            <head>
-                <style>
-                    {css}
-                </style>
-            </head>
-            <body>
-                <div class="sculpture-popup">
-                    <div class="columns">
-                        <div class="column1">
-                            <div class="title-and-artist">
-                                <p class="title">{title}</p>
-                                <p class="artist">{artist}</p> <br>
-                            </div>
-                            <div class="details">
-                                    <p>{year}</p>
-                                    <p>{site}</p>
-                                    <p>{attributes}</p>
-                            </div>
-                        </div>
-                        <div class="column2">
-                            <img src="{image_url}" alt="Sculpture image ({artist} - {title})">
-                        </div>
-                    </div>
-                    <p class="desc">{description}</p>
+        # Creating html display when marker is clicked:
+        html = f"""
+            <html>
+                <head>
                     <style>
-                        {elements.remove_underline()}
+                        {css}
                     </style>
-                    <div class="icon-links">
-                        <a href="{web_link}" target="_blank">
-                            <svg xmlns="http://www.w3.org/2000/svg"
-                                width="24" height="24" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2"
-                                stroke-linecap="round" stroke-linejoin="round"
-                                class="lucide lucide-square-arrow-out-up-right-icon lucide-square-arrow-out-up-right">
-                                <path d="M21 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h6"></path>
-                                <path d="m21 3-9 9"></path>
-                                <path d="M15 3h6v6"></path>
-                            </svg>
-                            </a><a href="{map_link}" target="_blank">
-                            <svg xmlns="http://www.w3.org/2000/svg"
-                                width="24" height="24" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2"
-                                stroke-linecap="round" stroke-linejoin="round"
-                                class="lucide lucide-map-icon lucide-map">
-                                <path d="M14.106 5.553a2 2 0 0 0 1.788 0l3.659-1.83A1 1 0 0 1 21 4.619v12.764a1 1 0 0 1-.553.894l-4.553 2.277a2 2 0 0 1-1.788 0l-4.212-2.106a2 2 0 0 0-1.788 0l-3.659 1.83A1 1 0 0 1 3 19.381V6.618a1 1 0 0 1 .553-.894l4.553-2.277a2 2 0 0 1 1.788 0z"></path>
-                                <path d="M15 5.764v15"></path>
-                                <path d="M9 3.236v15"></path>
-                            </svg>
-                        </a>
+                </head>
+                <body>
+                    <div class="sculpture-popup">
+                        <div class="columns">
+                            <div class="column1">
+                                <div class="title-and-artist">
+                                    <p class="title">{title}</p>
+                                    <p class="artist">{artist}</p> <br>
+                                </div>
+                                <div class="details">
+                                        <p>{year}</p>
+                                        <p>{site}</p>
+                                        <p>{attributes}</p>
+                                </div>
+                            </div>
+                            <div class="column2">
+                                <img src="{image_url}" alt="Sculpture image ({artist} - {title})">
+                            </div>
+                        </div>
+                        <p class="desc">{description}</p>
+                        <style>
+                            {elements.remove_underline()}
+                        </style>
+                        <div class="icon-links">
+                            <a href="{web_link}" target="_blank">
+                                <svg xmlns="http://www.w3.org/2000/svg"
+                                    width="24" height="24" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round"
+                                    class="lucide lucide-square-arrow-out-up-right-icon lucide-square-arrow-out-up-right">
+                                    <path d="M21 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h6"></path>
+                                    <path d="m21 3-9 9"></path>
+                                    <path d="M15 3h6v6"></path>
+                                </svg>
+                                </a><a href="{map_link}" target="_blank">
+                                <svg xmlns="http://www.w3.org/2000/svg"
+                                    width="24" height="24" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round"
+                                    class="lucide lucide-map-icon lucide-map">
+                                    <path d="M14.106 5.553a2 2 0 0 0 1.788 0l3.659-1.83A1 1 0 0 1 21 4.619v12.764a1 1 0 0 1-.553.894l-4.553 2.277a2 2 0 0 1-1.788 0l-4.212-2.106a2 2 0 0 0-1.788 0l-3.659 1.83A1 1 0 0 1 3 19.381V6.618a1 1 0 0 1 .553-.894l4.553-2.277a2 2 0 0 1 1.788 0z"></path>
+                                    <path d="M15 5.764v15"></path>
+                                    <path d="M9 3.236v15"></path>
+                                </svg>
+                            </a>
+                        </div>
                     </div>
-                </div>
-            </body>
-        </html>
-    """
-    
-    # Creating iframe + popup
-    iframe = branca.element.IFrame(
-        html=html,
-        width=700,
-        height=400
-    )
-    popup = folium.Popup(iframe, max_width=700)
+                </body>
+            </html>
+        """
+        
+        # Creating iframe + popup
+        iframe = branca.element.IFrame(
+            html=html,
+            width=700,
+            height=400
+        )
+        popup = folium.Popup(iframe, max_width=700)
 
-    # Determining color of marker:
-    marker_color = 'green'  # Default color (Wellington city walk)
-    match collection:
-        case "Botanic Garden Walk":
-            marker_color = 'cadetblue'
-        case "The Meridian Energy Wind Sculpture Walk":
-            marker_color = 'lightred'
-        case _:
-            pass
-    
-    # Create marker and add to feature group:
-    folium.Marker(
-        icon=folium.Icon(color=marker_color, icon='eye-open'),
-        location=[row["y"], row["x"]],
-        popup=popup,
-        title=title,
-        tooltip=title
-    ).add_to(fg)
+        # Determining color of marker:
+        marker_color = 'green'  # Default color (Wellington city walk)
+        match collection:
+            case "Botanic Garden Walk":
+                marker_color = 'cadetblue'
+            case "The Meridian Energy Wind Sculpture Walk":
+                marker_color = 'lightred'
+            case _:
+                pass
+        
+        # Create marker and add to feature group:
+        folium.Marker(
+            icon=folium.Icon(color=marker_color, icon='eye-open'),
+            location=[row["y"], row["x"]],
+            popup=popup,
+            title=title,
+            tooltip=title
+        ).add_to(fg)
 
-# Sculptures search bar:
-Search(
-    layer=fg,
-    search_label="title",
-    placeholder="Search sculptures",
-    collapsed=False
-).add_to(m)
+    # Sculptures search bar:
+    Search(
+        layer=fg,
+        search_label="title",
+        placeholder="Search sculptures",
+        collapsed=False
+    ).add_to(m)
+
+    return m
+
+m = build_map()
 
 # Export map to html file:
 m.save(f"{map_name}.html")
