@@ -37,5 +37,6 @@ meridian_energy_wind_sculpture_walk.py, and botanic_garden_walk.py
 scripts.
 2. Place the html files that were generated into the same folder.
 3. Open index.html with a web browser.
+
 You can also view the website online at:
 https://cpbarrett9.github.io/WGTN-Sculptures/.
