@@ -83,10 +83,10 @@ def build_map() -> folium.Map:
         # Creating iframe + popup
         iframe = branca.element.IFrame(
             html=html,
-            width=500,
+            width=550,
             height=400
         )
-        popup = folium.Popup(iframe, max_width=500)
+        popup = folium.Popup(iframe, max_width=550)
 
         # Determining color of marker:
         marker_color = 'green'  # Default color (Wellington city walk)
