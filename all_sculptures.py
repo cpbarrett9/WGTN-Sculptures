@@ -24,7 +24,8 @@ def build_map() -> folium.Map:
     m = folium.Map(
             location=[-41.296, 174.78], 
             zoom_start=14,
-            tiles='CartoDB Positron'
+            tiles='CartoDB Positron',
+            attributionControl=False
         )
 
     # Creating and adding Wellington Sculpture Trust web page as iframe:

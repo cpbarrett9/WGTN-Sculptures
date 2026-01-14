@@ -23,7 +23,8 @@ dataframe = pd.read_csv(CSV_PATH)
 m = folium.Map(
         location=[-41.2880, 174.7781], 
         zoom_start=15,
-        tiles='CartoDB Positron'
+        tiles='CartoDB Positron',
+        attributionControl=False
     )
 
 # Creating an adding navigation bar to page:

@@ -17,6 +17,10 @@ def global_css():
     <style>
 
         .leaflet-control-search {
+            z-index: 9999 !important;
+        }
+
+        .leaflet-popup-content {
             z-index: 10000 !important;
         }
 
@@ -30,10 +34,10 @@ def global_css():
 
             /* Resize popups: */
             .leaflet-popup-content {
-                width: 360px;
+                width: 330px;
             }
             .leaflet-popup-content iframe {
-                width: 360px;
+                width: 330px;
             }
 
             /* Hide desktop version of the popups */
