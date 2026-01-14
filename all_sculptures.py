@@ -49,9 +49,6 @@ def build_map() -> folium.Map:
     nav = elements.nav_bar()
     m.get_root().html.add_child(Element(nav))
 
-    # CSS Styling for map marker popups:
-    css = elements.get_popup_css()
-
     # Feature Group for map markers:
     fg = folium.FeatureGroup(name="Sculptures").add_to(m)
 
@@ -71,63 +68,17 @@ def build_map() -> folium.Map:
         collection = row['collection']
 
         # Creating html display when marker is clicked:
-        html = f"""
-            <html>
-                <head>
-                    <link href="https://fonts.googleapis.com/css?family=Raleway:400,300,600,500,900,700,800" rel="stylesheet" type="text/css">
-                    <style>
-                        {css}
-                    </style>
-                </head>
-                <body>
-                    <div class="sculpture-popup">
-                        <div class="columns">
-                            <div class="column1">
-                                <div class="title-and-artist">
-                                    <p class="title">{title}</p>
-                                    <p class="artist">{artist}</p> <br>
-                                </div>
-                                <div class="details">
-                                        <p>{year}</p>
-                                        <p>{site}</p>
-                                        <p>{attributes}</p>
-                                </div>
-                            </div>
-                            <div class="column2">
-                                <img src="{image_url}" alt="Sculpture image ({artist} - {title})">
-                            </div>
-                        </div>
-                        <p class="desc">{description}</p>
-                        <style>
-                            {elements.remove_underline()}
-                        </style>
-                        <div class="icon-links">
-                            <a href="{web_link}" target="_blank">
-                                <svg xmlns="http://www.w3.org/2000/svg"
-                                    width="24" height="24" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2"
-                                    stroke-linecap="round" stroke-linejoin="round"
-                                    class="lucide lucide-square-arrow-out-up-right-icon lucide-square-arrow-out-up-right">
-                                    <path d="M21 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h6"></path>
-                                    <path d="m21 3-9 9"></path>
-                                    <path d="M15 3h6v6"></path>
-                                </svg>
-                                </a><a href="{map_link}" target="_blank">
-                                <svg xmlns="http://www.w3.org/2000/svg"
-                                    width="24" height="24" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2"
-                                    stroke-linecap="round" stroke-linejoin="round"
-                                    class="lucide lucide-map-icon lucide-map">
-                                    <path d="M14.106 5.553a2 2 0 0 0 1.788 0l3.659-1.83A1 1 0 0 1 21 4.619v12.764a1 1 0 0 1-.553.894l-4.553 2.277a2 2 0 0 1-1.788 0l-4.212-2.106a2 2 0 0 0-1.788 0l-3.659 1.83A1 1 0 0 1 3 19.381V6.618a1 1 0 0 1 .553-.894l4.553-2.277a2 2 0 0 1 1.788 0z"></path>
-                                    <path d="M15 5.764v15"></path>
-                                    <path d="M9 3.236v15"></path>
-                                </svg>
-                            </a>
-                        </div>
-                    </div>
-                </body>
-            </html>
-        """
+        html = elements.map_marker_html(
+            title=title,
+            artist=artist,
+            year=year,
+            site=site,
+            attributes=attributes,
+            image_url=image_url,
+            description=description,
+            web_link=web_link,
+            map_link=map_link
+        )
         
         # Creating iframe + popup
         iframe = branca.element.IFrame(
