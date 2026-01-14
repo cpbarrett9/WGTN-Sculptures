@@ -15,14 +15,33 @@ import elements
 def global_css():
     return """
     <style>
+
         .leaflet-control-search {
             z-index: 10000 !important;
         }
+
+        /* Optimizing for mobile devices: */
         @media only screen and (max-width: 870px) {
+
+            /* Hide web panel */
             .web-panel {
                 display: none;
             }
+
+            /* Resize popups: */
+            .leaflet-popup-content {
+                width: 360px;
+            }
+            .leaflet-popup-content iframe {
+                width: 360px;
+            }
+
+            /* Hide desktop version of the popups */
+            .leaflet-popup-content iframe .popup-desktop {
+                display: none;
+            }
         }
+
     </style>
     """
 
@@ -94,54 +113,46 @@ def get_popup_css():
     }
 
     .sculpture-popup img {
-        max-width: 380px;
-        min-width: 380px;
-        max-height: 230px;
-        min-height: 230px;
-        padding-left: 12px;
+        display: block;
+        margin: 0 auto;
+        width: 65%;
+        height: 65%;
         object-fit: cover;
     }
 
     .title-and-artist {
-        padding-top: -40px;
         line-height: 30px;
+        margin-bottom: -30px;
+        text-align: center;
     }
 
     .title {
         font-size: 30px;
         font-weight: bold;
         margin: 0 0 8px 0;
+        color: #fc6909;
+    }
 
+    a {
+        color: #428bca;
     }
 
     .artist {
         font-size: 20px;
+        font-weight: bold;
         margin-top: -5px;
+        color: #1b3664;
     }
 
     .details {
-        margin-top: -35px;
+        margin-top: 30px;
+        margin-bottom: 20px;
         color: #586871;
     }
 
     .details p {
         margin-top: -10px;
         line-height: 20px;
-    }
-
-    .columns {
-        display: flex;
-    }
-
-    .column1 {
-        max-width: 275px;
-        float: left;
-    }
-
-    .column2 {
-        max-width: 275px;
-        float: right;
-        justify-content: right;
     }
 
     .desc {
@@ -173,23 +184,19 @@ def map_marker_html(
                 </head>
                 <body>
                     <div class="sculpture-popup">
-                        <div class="columns">
-                            <div class="column1">
-                                <div class="title-and-artist">
-                                    <p class="title">{title}</p>
-                                    <p class="artist">{artist}</p> <br>
-                                </div>
-                                <div class="details">
-                                        <p>{year}</p>
-                                        <p>{site}</p>
-                                        <p>{attributes}</p>
-                                </div>
+                        <div class="popup-desktop">
+                            <div class="title-and-artist">
+                                <p class="title">{title}</p>
+                                <p class="artist">{artist}</p> <br>
                             </div>
-                            <div class="column2">
-                                <img src="{image_url}" alt="Sculpture image ({artist} - {title})">
-                            </div>
+                            <img src="{image_url}" alt="Sculpture image ({artist} - {title})">
                         </div>
                         <p class="desc">{description}</p>
+                        <div class="details">
+                                <p>{year}</p>
+                                <p>{site}</p>
+                                <p>{attributes}</p>
+                        </div>
                         <style>
                             {elements.remove_underline()}
                         </style>
