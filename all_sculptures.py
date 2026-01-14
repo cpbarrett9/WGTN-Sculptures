@@ -74,6 +74,7 @@ def build_map() -> folium.Map:
         html = f"""
             <html>
                 <head>
+                    <link href="https://fonts.googleapis.com/css?family=Raleway:400,300,600,500,900,700,800" rel="stylesheet" type="text/css">
                     <style>
                         {css}
                     </style>

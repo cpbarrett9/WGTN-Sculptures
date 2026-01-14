@@ -86,7 +86,7 @@ def get_popup_css():
     return """
 
     body {
-        font-family: "Helvetica Neue", Helvetica, sans-serif;
+        font-family: 'Raleway', sans-serif;
     }
 
     .sculpture-popup {
@@ -111,6 +111,7 @@ def get_popup_css():
         font-size: 30px;
         font-weight: bold;
         margin: 0 0 8px 0;
+
     }
 
     .artist {
@@ -120,11 +121,11 @@ def get_popup_css():
 
     .details {
         margin-top: -35px;
+        color: #586871;
     }
 
     .details p {
         margin-top: -10px;
-        font-style: italic;
         line-height: 20px;
     }
 
@@ -145,6 +146,7 @@ def get_popup_css():
 
     .desc {
         padding-top: 15px;
+        color: #1b3664;
     }
 
     """
