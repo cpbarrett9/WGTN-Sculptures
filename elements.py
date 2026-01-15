@@ -20,8 +20,8 @@ def global_css():
             z-index: 9999 !important;
         }
 
-        .leaflet-popup-content {
-            z-index: 10000 !important;
+        .leaflet-popup-content-wrapper {
+            /*z-index: 10000 !important;*/
         }
 
         /* Optimizing for mobile devices: */
@@ -48,7 +48,7 @@ def global_css():
 
     </style>
     """
-
+# Removes unwanted underline from SVG links:
 def remove_underline():
     return """
 
@@ -57,29 +57,45 @@ def remove_underline():
         }
 
     """
+# Returns button to toggle/untoggle on-screen menu options:
+def hide_menu_toggle():
+    return f"""
 
-# Returns a legend of colors and their corresponding sculpture collections. Used by 'all_sculptures' map:
-def get_legend():
-    return """
-
+    <script src="script.js"></script>
     <div style="
-            position: fixed;
-            top: 60px;
-            right: 12px;
-            z-index: 9999;
-            background-color: white;
-            padding: 10px 15px;
-            border-radius: 5px;
-            box-shadow: 0 0 5px rgba(0,0,0,0.3);
-            font-family: Arial, sans-serif;
-            font-size: 18px;
+        position: fixed;
+        bottom: 12px;
+        right: 12px;
+        z-index: 9999;
+        background-color: white;
+        padding: 10px 10px;
+        border-radius: 5px;
+        box-shadow: 0 0 5px rgba(0,0,0,0.3);
+        font-family: Arial, sans-serif;
+    ">
+        <button id="menu-toggle" aria-label="Toggle Menu" style="
+            background: none;
+            color: inherit;
+            border: none;
+            padding: 0;
+            font: inherit;
+            cursor: pointer;
+            outline: inherit;
+            font-size: 10px;
         ">
-            <b>Collections:</b><br>
-            <span style="color: #72b127;">&#9679;</span> Wellington City Walk<br>
-            <span style="color: #446979;">&#9679;</span> Botanic Garden Walk<br>
-            <span style="color: #ff8e7f;">&#9679;</span> The Meridian Energy Wind Sculpture Walk<br>
-            
-    </div>   
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-eye-icon lucide-eye"><path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0"/><circle cx="12" cy="12" r="3"/></svg>
+            <br><span>Hide Menu</span>
+        </button>
+    </div>
+
+    """
+
+# Returns script controlling menu toggle behavior:
+def menu_toggle_js():
+    return """
+    
+
+
     """
 
 # Returns the attribution panel (links to Wellington Sculpture Trust website):

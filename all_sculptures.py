@@ -4,6 +4,7 @@ import pandas as pd
 from folium import Element
 from folium.plugins import Search
 import elements
+import navigation
 from folium.plugins import LocateControl
 from pathlib import Path
 
@@ -45,6 +46,10 @@ def build_map() -> folium.Map:
     # Creating and adding attribution to map:
     attribution = elements.get_attribution()
     m.get_root().html.add_child(Element(attribution))
+
+    # Creating and adding menu visibility toggle:
+    hide_menu_toggle = elements.hide_menu_toggle();
+    m.get_root().html.add_child(Element(hide_menu_toggle))
 
     # Creating an adding navigation bar to page:
     nav = elements.nav_bar()
