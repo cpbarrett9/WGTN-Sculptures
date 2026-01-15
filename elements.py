@@ -61,7 +61,7 @@ def remove_underline():
 def hide_menu_toggle():
     return f"""
 
-    <script src="script.js"></script>
+    <script src="WGTN-Sculptures/script.js"></script>
     <div style="
         position: fixed;
         bottom: 12px;
