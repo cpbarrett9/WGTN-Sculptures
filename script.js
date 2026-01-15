@@ -1,9 +1,7 @@
 
 /* 
 *   TO DO:
-*   - Grab and declare necessary elements (menu items to trigger visibility for)
-*   - Set those elements invisible/visible
-*   - Make the toggle button look nice
+*   - Make eye SVGs overlap with one another
 */
 
 // Declaring element variables:
@@ -58,14 +56,14 @@ function toggleMenuBoolean() {
     if (isMenuToggled) {
         /* When switching to hidden menu: */
         isMenuToggled = false;
-        menu_toggle_text.text = "Show menu";
+        menu_toggle_text.textContent = "Show menu";
         open_eye_svg.style.visibility = "visible"; // <- Switch which eye svg is visible
         closed_eye_svg.style.visibility = "hidden";
     }
     else {
         /* When switching to visible menu: */
         isMenuToggled = true;
-        menu_toggle_text.text = "Hide menu";
+        menu_toggle_text.textContent = "Hide menu";
         open_eye_svg.style.visibility = "hidden";
         closed_eye_svg.style.visibility = "visible";
     }
