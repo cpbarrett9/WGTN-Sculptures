@@ -28,7 +28,7 @@ def global_css():
         @media only screen and (max-width: 870px) {
 
             /* Hide web panel */
-            .web-panel {
+            #web-panel {
                 display: none;
             }
 
@@ -81,10 +81,37 @@ def hide_menu_toggle():
             font: inherit;
             cursor: pointer;
             outline: inherit;
-            font-size: 10px;
+            font-size: 9px;
         ">
-            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-eye-icon lucide-eye"><path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0"/><circle cx="12" cy="12" r="3"/></svg>
-            <br><span>Hide Menu</span>
+            <svg xmlns="http://www.w3.org/2000/svg" id="open-eye-svg" 
+                width="28" 
+                height="28" 
+                viewBox="0 0 24 24" 
+                fill="none" 
+                stroke="currentColor" 
+                stroke-width="2" 
+                stroke-linecap="round" 
+                stroke-linejoin="round" 
+                class="lucide lucide-eye-icon lucide-eye">
+                <path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0"/>
+                <circle cx="12" cy="12" r="3"/>
+            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" id="closed-eye-svg" 
+                width="28" 
+                height="28" 
+                viewBox="0 0 24 24"
+                fill="none" 
+                stroke="currentColor" 
+                stroke-width="2" 
+                stroke-linecap="round" 
+                stroke-linejoin="round" 
+                class="lucide lucide-eye-off-icon 
+                lucide-eye-off">
+                <path d="M10.733 5.076a10.744 10.744 0 0 1 11.205 6.575 1 1 0 0 1 0 .696 10.747 10.747 0 0 1-1.444 2.49"/><path d="M14.084 14.158a3 3 0 0 1-4.242-4.242"/>
+                <path d="M17.479 17.499a10.75 10.75 0 0 1-15.417-5.151 1 1 0 0 1 0-.696 10.75 10.75 0 0 1 4.446-5.143"/>
+                <path d="m2 2 20 20"/>
+            </svg>
+            <br><span id="menu_toggle_text" style=" color: gray; ">Hide Menu</span>
         </button>
     </div>
 
@@ -102,7 +129,7 @@ def menu_toggle_js():
 def get_attribution():
     return """
 
-    <div style="
+    <div id="attribution" style="
         position: fixed;
         bottom: 12px;
         left: 12px;
@@ -209,7 +236,7 @@ def map_marker_html(
                                 <p class="title">{title}</p>
                                 <p class="artist">{artist}</p> <br>
                             </div>
-                            <img src="{image_url}" alt="Sculpture image ({artist} - {title})">
+                            <img src="{image_url}" alt="{artist} - {title}">
                         </div>
                         <p class="desc">{description}</p>
                         <div class="details">
@@ -252,7 +279,7 @@ def map_marker_html(
 # Returns a mini version of a webpage embedded on the left side of the map:
 def web_frame_html(page: str):
     return f"""
-        <div style="{web_frame_css()}" class="web-panel">
+        <div style="{web_frame_css()}" id="web-panel">
             <iframe 
                 src="{page}"
                 style="
@@ -281,7 +308,7 @@ def web_frame_css():
 # Returns navigation bar element. Used on all maps.
 def nav_bar():
     return """
-        <div style="
+        <div id="navigation" style="
             position: fixed;
             top: 12px;
             right: 12px;
