@@ -11,7 +11,7 @@ var attribution_panel;
 var navigation;
 var open_eye_svg;
 var closed_eye_svg;
-var menu_toggle_text;
+//var menu_toggle_text;
 
 // onClick function for menu toggle button:
 window.onload = function() {
@@ -24,7 +24,7 @@ window.onload = function() {
     navigation =            document.getElementById("navigation");
     open_eye_svg =          document.getElementById("open-eye-svg");
     closed_eye_svg =        document.getElementById("closed-eye-svg");
-    menu_toggle_text =      document.getElementById("menu_toggle_text")
+    //menu_toggle_text =      document.getElementById("menu_toggle_text")
 
     // Display closed eye svg initially:
     open_eye_svg.style.visibility = "hidden";
@@ -56,14 +56,14 @@ function toggleMenuBoolean() {
     if (isMenuToggled) {
         /* When switching to hidden menu: */
         isMenuToggled = false;
-        menu_toggle_text.textContent = "Show menu";
+        //menu_toggle_text.textContent = "Show menu";
         open_eye_svg.style.visibility = "visible"; // <- Switch which eye svg is visible
         closed_eye_svg.style.visibility = "hidden";
     }
     else {
         /* When switching to visible menu: */
         isMenuToggled = true;
-        menu_toggle_text.textContent = "Hide menu";
+        //menu_toggle_text.textContent = "Hide menu";
         open_eye_svg.style.visibility = "hidden";
         closed_eye_svg.style.visibility = "visible";
     }
