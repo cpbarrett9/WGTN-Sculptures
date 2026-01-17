@@ -1,9 +1,4 @@
 
-/* 
-*   TO DO:
-*   - Make eye SVGs overlap with one another
-*/
-
 // Declaring element variables:
 var web_panel;
 var leaflet_controls;
@@ -11,7 +6,6 @@ var attribution_panel;
 var navigation;
 var open_eye_svg;
 var closed_eye_svg;
-//var menu_toggle_text;
 
 // onClick function for menu toggle button:
 window.onload = function() {
@@ -24,7 +18,6 @@ window.onload = function() {
     navigation =            document.getElementById("navigation");
     open_eye_svg =          document.getElementById("open-eye-svg");
     closed_eye_svg =        document.getElementById("closed-eye-svg");
-    //menu_toggle_text =      document.getElementById("menu_toggle_text")
 
     // Display closed eye svg initially:
     open_eye_svg.style.visibility = "hidden";
@@ -46,6 +39,9 @@ window.onload = function() {
 
         }
     );
+
+    // Run on load:
+    detectMobile(mq);
 }
 
 // isMenuToggled(): Tracks if the menu is currently visible
@@ -56,20 +52,19 @@ function toggleMenuBoolean() {
     if (isMenuToggled) {
         /* When switching to hidden menu: */
         isMenuToggled = false;
-        //menu_toggle_text.textContent = "Show menu";
         open_eye_svg.style.visibility = "visible"; // <- Switch which eye svg is visible
         closed_eye_svg.style.visibility = "hidden";
     }
     else {
         /* When switching to visible menu: */
         isMenuToggled = true;
-        //menu_toggle_text.textContent = "Hide menu";
         open_eye_svg.style.visibility = "hidden";
         closed_eye_svg.style.visibility = "visible";
     }
         
 }
 
+// hideMenu(): Set menu elements to hidden:
 function hideMenu() {
     toggleMenuBoolean();
     leaflet_controls.style.visibility = "hidden";
@@ -78,6 +73,7 @@ function hideMenu() {
     web_panel.style.visibility = "hidden";
 }
 
+// showMenu(): Set menu elements to visible:
 function showMenu() {
     toggleMenuBoolean();
     leaflet_controls.style.visibility = "visible";
@@ -85,3 +81,16 @@ function showMenu() {
     navigation.style.visibility = "visible";
     web_panel.style.visibility = "visible";
 }
+
+// <-  Triggering hide menu by default on mobile devices: -->
+
+// Hide menu if the screen is small:
+function detectMobile(e) {
+    if (e.matches) {
+        console.log("Small screen detected");
+        hideMenu();
+    }
+}
+
+// MediaQueryList:
+const mq = window.matchMedia('(max-width: 870px)');

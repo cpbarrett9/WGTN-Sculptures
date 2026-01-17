@@ -39,6 +39,10 @@ m.get_root().html.add_child(Element(garden_walk_page_html))
 global_css = elements.global_css()
 m.get_root().html.add_child(Element(global_css))
 
+# Creating and adding menu visibility toggle:
+hide_menu_toggle = elements.hide_menu_toggle();
+m.get_root().html.add_child(Element(hide_menu_toggle))
+
 # Creating and adding attribution panel:
 attribution = elements.get_attribution()
 m.get_root().html.add_child(Element(attribution))

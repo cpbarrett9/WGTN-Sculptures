@@ -35,6 +35,10 @@ m.get_root().html.add_child(Element(nav))
 info_page_html = elements.web_frame_html("https://www.sculpture.org.nz/walks/the-meridian-energy-wind-sculpture-walk#content-wrap")
 m.get_root().html.add_child(Element(info_page_html))
 
+# Creating and adding menu visibility toggle:
+hide_menu_toggle = elements.hide_menu_toggle();
+m.get_root().html.add_child(Element(hide_menu_toggle))
+
 # Creating and adding attribution panel:
 attribution = elements.get_attribution()
 m.get_root().html.add_child(Element(attribution))

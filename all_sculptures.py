@@ -4,7 +4,6 @@ import pandas as pd
 from folium import Element
 from folium.plugins import Search
 import elements
-import navigation
 from folium.plugins import LocateControl
 from pathlib import Path
 
