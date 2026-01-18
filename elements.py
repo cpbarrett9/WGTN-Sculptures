@@ -177,14 +177,13 @@ def get_attribution():
         left: 12px;
         z-index: 9999;
         background-color: white;
-        padding: 10px 10px;
+        padding: 5px 10px;
         border-radius: 5px;
         box-shadow: 0 0 5px rgba(0,0,0,0.3);
         font-family: Arial, sans-serif;
-        font-size: 18px;
-        width: 300px;
+        font-size: 10px;
     ">
-        <div style="font-size: 12px;">Data gathered from the <a href="https://www.sculpture.org.nz/" target="_blank">Wellington Sculpture Trust</a>.</div>
+        <a href="https://www.sculpture.org.nz/" target="_blank">&copy; Wellington Sculpture Trust</a>
     </div>
 
     """
@@ -340,7 +339,7 @@ def web_frame_css():
         width: 300px;
         height: 470px;
         left: 12px;
-        bottom: 60px;
+        bottom: 47px;
         z-index: 500;
         border-radius: 5px;
         background: white;
