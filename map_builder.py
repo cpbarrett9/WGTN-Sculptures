@@ -8,6 +8,11 @@ from folium import Element
 from folium.plugins import LocateControl
 from folium.plugins import Search
 
+#
+#   'map_builder': Contains functions that return sculpture maps based on specifications.
+#
+
+# Returns a folium map of the given sculpture collection:
 def build_map(map_name: str, location: Sequence[float], zoom_start:int) -> folium.Map:
 
     # Creating map object:
@@ -127,10 +132,14 @@ def build_map(map_name: str, location: Sequence[float], zoom_start:int) -> foliu
 
     return m
 
+# Returns the ant path (representation of suggested walking path) object for each sculpture collection:
 def get_ant_path(map_name: str):
+
     path_points = None
     color = None
+    
     match map_name:
+
         case "botanic_garden_walk":
             path_points = [
                 [-41.285238007589314, 174.76775784695553],
@@ -222,6 +231,7 @@ def get_ant_path(map_name: str):
                 [-41.28523182622974, 174.7677566812756],
             ]
             color = "blue"
+
         case "meridian_energy_wind_sculpture_walk":
             path_points = [
                 [-41.31225268949123, 174.79601665467214],
@@ -235,6 +245,7 @@ def get_ant_path(map_name: str):
                 [-41.316318273645344, 174.8088440719203],
             ]
             color = "orange"
+
         case _:
             path_points = [
                 [-41.278914664517686, 174.77863159876915],

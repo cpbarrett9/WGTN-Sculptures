@@ -1,8 +1,8 @@
 import map_builder
 
 #
-#   'all_sculptures': Map of all sculptures commissioned by the Wellington Sculpture Trust.
-#   Markers are color-coded by the collection/art walk they belong to.
+#   'WGTN_sculptures': Generates HTML files for the website's four pages.
+#   See map_builder.py for map generation logic, see elements.py for HTML & CSS elements.
 #
 
 # All Sculptures Page:
