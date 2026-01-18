@@ -6,6 +6,7 @@ var attribution_panel;
 var navigation;
 var open_eye_svg;
 var closed_eye_svg;
+var hide_menu_alert;
 
 var fullscreen_button; // <- Fullscreen button + boolean
 var isFullscreenActive = false;
@@ -21,10 +22,12 @@ window.onload = function() {
     navigation =            document.getElementById("navigation");
     open_eye_svg =          document.getElementById("open-eye-svg");
     closed_eye_svg =        document.getElementById("closed-eye-svg");
+    hide_menu_alert =       document.getElementById("hide-menu-alert");
 
     // Display closed eye svg initially:
     open_eye_svg.style.visibility = "hidden";
     closed_eye_svg.style.visibility = "visible";
+    hide_menu_alert.style.visibility = "hidden";
 
     // Add event listener to menu toggle button:
     menu_toggle.addEventListener("click", function() {
@@ -109,6 +112,9 @@ function hideMenu() {
 // showMenu(): Set menu elements to visible:
 function showMenu() {
     toggleMenuBoolean();
+    if (hide_menu_alert.style.visibility == "visible") {
+        hide_menu_alert.style.visibility = "hidden";
+    }
     leaflet_controls.style.visibility = "visible";
     attribution_panel.style.visibility = "visible";
     navigation.style.visibility = "visible";
@@ -120,10 +126,10 @@ function showMenu() {
 // Hide menu if the screen is small:
 function detectMobile(e) {
     if (e.matches) {
-        console.log("Small screen detected");
+        hide_menu_alert.style.visibility = "visible";
         hideMenu();
     }
 }
 
 // MediaQueryList:
-const mq = window.matchMedia('(max-width: 600px)');
+const mq = window.matchMedia('(max-width: 575px)');

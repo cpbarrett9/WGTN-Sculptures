@@ -14,7 +14,7 @@ m.save("index.html") # <- Export map to html file
 
 # Wellington City Walk Page:
 map_name = "wellington_city_walk"
-m = map_builder.build_map(map_name=map_name, 
+m = map_builder.build_map(map_name=map_name,
                           location=[-41.2880, 174.7781],
                           zoom_start=15
                           )

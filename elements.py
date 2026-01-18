@@ -103,6 +103,11 @@ def global_css():
             stroke: #333 !important;
         }
 
+        #hide-menu-alert.lucide {
+            left: 15px;
+            top: -12px;
+        }
+
     </style>
     """
 # Removes unwanted underline from SVG links:
@@ -152,6 +157,9 @@ def hide_menu_toggle():
                     <path d="M14.084 14.158a3 3 0 0 1-4.242-4.242"/>
                     <path d="M17.479 17.499a10.75 10.75 0 0 1-15.417-5.151 1 1 0 0 1 0-.696 10.75 10.75 0 0 1 4.446-5.143"/>
                     <path d="m2 2 20 20"/>
+                </svg>
+                <svg id="hide-menu-alert"
+                    xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="yellow" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-alert-icon lucide-circle-alert"><circle cx="12" cy="12" r="10"/><line x1="12" x2="12" y1="8" y2="12"/><line x1="12" x2="12.01" y1="16" y2="16"/>
                 </svg>
             </div>
         </button>
