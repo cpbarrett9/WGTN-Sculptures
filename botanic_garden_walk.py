@@ -128,7 +128,6 @@ Search(
 ).add_to(m)
 
 # Ant path:
-# (Points selected with https://geojson.io)
 path_points = [
     [-41.285238007589314, 174.76775784695553],
     [-41.28511498597266, 174.7676961739051],

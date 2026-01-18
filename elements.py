@@ -10,8 +10,6 @@ import elements
 #
 
 # Returns CSS that should go to the top of every (or many) map pages.
-# - Sends search bar to top of Z-index so things don't overlap it
-# - Styling for icon links at the bottom of popups
 def global_css():
     return """
     <style>
