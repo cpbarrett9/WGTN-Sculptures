@@ -42,7 +42,6 @@ window.onload = function() {
                 console.log("Menu enabled");
                 showMenu()
             }
-
         }
     );
 
@@ -50,39 +49,37 @@ window.onload = function() {
     let fullscreen_button = document.getElementById("full-screen-button");
     fullscreen_button.addEventListener("click", function(){
 
-if (isFullscreenActive) {
-        // Exit works everywhere
-        if (document.exitFullscreen) document.exitFullscreen();
-        else if (document.webkitExitFullscreen) document.webkitExitFullscreen();
-        else if (document.mozCancelFullScreen) document.mozCancelFullScreen();
-        else if (document.msExitFullscreen) document.msExitFullscreen();
-        isFullscreenActive = false;
-        return;
-    }
-    
-    // Check support BEFORE enter
-    if (!document.fullscreenEnabled && 
-        !document.webkitFullscreenEnabled && 
-        !document.mozFullScreenEnabled && 
-        !document.msFullscreenEnabled) {
-        // Show your pure HTML popup or alert
-        showNoFullscreenPopup();  // Your function
-        // OR simple alert: alert('Fullscreen unsupported on this device. Use new tab.');
-        return;
-    }
-    
-    // Enter fullscreen (supported)
-    const elem = document.documentElement;
-    if (elem.requestFullscreen) {
-        elem.requestFullscreen();
-    } else if (elem.webkitRequestFullscreen) {
-        elem.webkitRequestFullscreen();
-    } else if (elem.mozRequestFullScreen) {
-        elem.mozRequestFullScreen();
-    } else if (elem.msRequestFullscreen) {
-        elem.msRequestFullscreen();
-    }
-    isFullscreenActive = true;
+        // Exit fullscreen:
+        if (isFullscreenActive) {
+            if (document.exitFullscreen) document.exitFullscreen();
+            else if (document.webkitExitFullscreen) document.webkitExitFullscreen();
+            else if (document.mozCancelFullScreen) document.mozCancelFullScreen();
+            else if (document.msExitFullscreen) document.msExitFullscreen();
+            isFullscreenActive = false;
+            return;
+        }
+        
+        // Check if browser doesn't support fullscreen:
+        if (!document.fullscreenEnabled && 
+            !document.webkitFullscreenEnabled && 
+            !document.mozFullScreenEnabled && 
+            !document.msFullscreenEnabled) {
+                showNoFullscreenPopup(); // <- Display new tab popup
+                return;
+        }
+        
+        // Enter fullscreen (supported):
+        const elem = document.documentElement;
+        if (elem.requestFullscreen) {
+            elem.requestFullscreen();
+        } else if (elem.webkitRequestFullscreen) {
+            elem.webkitRequestFullscreen();
+        } else if (elem.mozRequestFullScreen) {
+            elem.mozRequestFullScreen();
+        } else if (elem.msRequestFullscreen) {
+            elem.msRequestFullscreen();
+        }
+        isFullscreenActive = true;
     });
 
     // Run on load:
@@ -145,11 +142,13 @@ function detectMobile(e) {
 // MediaQueryList:
 const mq = window.matchMedia('(max-width: 575px)');
 
+// Displays popup when fullscreen can't be enabled:
 function showNoFullscreenPopup() {
     document.getElementById('no-fullscreen-popup').style.display = 'block';
     document.getElementById('popup-overlay').style.display = 'block';
 }
 
+// Closes the popup:
 function closePopup() {
     document.getElementById('no-fullscreen-popup').style.display = 'none';
     document.getElementById('popup-overlay').style.display = 'none';
