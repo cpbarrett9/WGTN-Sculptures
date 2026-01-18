@@ -45,6 +45,9 @@ def build_map(map_name: str, location: Sequence[float], zoom_start:int) -> foliu
     hide_menu_toggle = elements.hide_menu_toggle();
     m.get_root().html.add_child(Element(hide_menu_toggle))
 
+    # Creating and adding fullscreen toggle:
+    # code here
+
     # Creating an adding navigation bar to page:
     nav = elements.nav_bar()
     m.get_root().html.add_child(Element(nav))
@@ -137,7 +140,7 @@ def get_ant_path(map_name: str):
 
     path_points = None
     color = None
-    
+
     match map_name:
 
         case "botanic_garden_walk":
