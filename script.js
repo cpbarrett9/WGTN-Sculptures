@@ -112,6 +112,7 @@ function hideMenu() {
 // showMenu(): Set menu elements to visible:
 function showMenu() {
     toggleMenuBoolean();
+    // If the show menu alert was activated, turn it off:
     if (hide_menu_alert.style.visibility == "visible") {
         hide_menu_alert.style.visibility = "hidden";
     }
@@ -126,6 +127,7 @@ function showMenu() {
 // Hide menu if the screen is small:
 function detectMobile(e) {
     if (e.matches) {
+        // Alert shows next to menu toggle on mobile to draw attention to it (invisible by default on mobile)
         hide_menu_alert.style.visibility = "visible";
         hideMenu();
     }

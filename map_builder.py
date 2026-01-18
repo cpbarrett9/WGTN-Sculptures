@@ -7,7 +7,6 @@ import branca
 from folium import Element
 from folium.plugins import LocateControl
 from folium.plugins import Search
-from folium.plugins import Fullscreen
 
 #
 #   'map_builder': Contains functions that return sculpture maps based on specifications.

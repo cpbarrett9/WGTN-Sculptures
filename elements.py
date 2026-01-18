@@ -23,7 +23,7 @@ def global_css():
         }
 
         /* Optimizing for mobile devices: */
-        @media only screen and (max-width: 870px) {
+        @media only screen and (max-width: 870px), only screen and (max-height: 679px) {
             /* Hide web panel */
             #web-panel {
                 display: none;
