@@ -12,12 +12,11 @@ the website’s four pages, and a general information panel in the bottom left
 (iFrame of the Wellington Sculpture Trust Website).
 
 Objectives:
-- Present geographic information about the WST’s collection in a more
-engaging and geographically useful way than the website currently does.
+- Present geographic information about the WST’s collection in an
+engaging and geographically useful way.
 - Provide a tool that can be used for self-guided tours (track location +
 provide route and sculpture information).
-- Create a strong GIS (Geographic Information System) portfolio piece by
-following GIS project conventions and demonstrating in-demand skills.
+- Create a strong GIS (Geographic Information System) portfolio piece by demonstrating in-demand skills.
 
 – Tech Stack –
 
@@ -32,11 +31,9 @@ Software & Services:
 - Github (Version Control) + Github Pages (deployment)
 
 – How to Run –
-1. Run the all_sculptures.py, wellington_city_walk.py,
-meridian_energy_wind_sculpture_walk.py, and botanic_garden_walk.py
-scripts.
-2. Place the html files that were generated into the same folder.
+1. Run WGTN_sculptures.py.
+2. Place the html files that were generated along with script.js into the same folder.
 3. Open index.html with a web browser.
 
 You can also view the website online at:
-https://cpbarrett9.github.io/WGTN-Sculptures/.
+https://cpbarrett9.github.io/wellington-sculpture-map/.
