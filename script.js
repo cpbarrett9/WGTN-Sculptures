@@ -47,11 +47,28 @@ window.onload = function() {
     let fullscreen_button = document.getElementById("full-screen-button");
     fullscreen_button.addEventListener("click", function(){
         if (isFullscreenActive) {
-            document.exitFullscreen();
+            if (document.exitFullscreen) {
+                document.exitFullscreen();
+            } else if (document.webkitExitFullscreen) {  // iOS Safari
+                document.webkitExitFullscreen();
+            } else if (document.mozCancelFullScreen) {   // Firefox
+                document.mozCancelFullScreen();
+            } else if (document.msExitFullscreen) {      // IE/Edge
+                document.msExitFullscreen();
+            }
             isFullscreenActive = false;
-        }
-        else {
-            document.documentElement.requestFullscreen();
+        } else {
+            // enter fullscreen with vendor prefixes
+            const elem = document.documentElement;
+            if (elem.requestFullscreen) {
+                elem.requestFullscreen();
+            } else if (elem.webkitRequestFullscreen) {   // iOS Safari, Chrome
+                elem.webkitRequestFullscreen();
+            } else if (elem.mozRequestFullScreen) {      // Firefox
+                elem.mozRequestFullScreen();
+            } else if (elem.msRequestFullscreen) {       // IE/Edge
+                elem.msRequestFullscreen();
+            }
             isFullscreenActive = true;
         }
     })
