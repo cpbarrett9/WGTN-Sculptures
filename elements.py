@@ -108,8 +108,100 @@ def global_css():
             top: -12px;
         }
 
+        #no-fullscreen-popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            padding: 16px;  /* Reduced from 24px */
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 12px;
+            z-index: 10000;
+            max-width: 340px;
+            min-width: 280px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), 0 1px 7px rgba(0, 0, 0, 0.2);
+            font-family: 'Raleway', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-size: 14px;
+            line-height: 1.4;
+            color: #333;
+            text-align: center;
+        }
+
+        #no-fullscreen-popup b {
+            color: #1b3664;
+            font-weight: 600;
+            font-size: 16px;
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        #no-fullscreen-popup a {
+            color: #428cca !important;
+            text-decoration: none;
+            font-weight: 500;
+            display: block;
+            margin: 4px 0; 
+        }
+
+        #no-fullscreen-popup a:hover {
+            text-decoration: underline;
+        }
+
+        #no-fullscreen-popup button {
+            background: rgba(255, 255, 255, 0.95);
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            padding: 10px 24px;
+            margin: 8px auto 0;
+            display: block;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 14px;
+            min-width: 80px;
+            transition: all 0.2s;
+        }
+
+        #no-fullscreen-popup button:hover {
+            background: rgba(255, 255, 255, 1);
+            box-shadow: 0 1px 7px rgba(0, 0, 0, 0.2);
+        }
+
+        #popup-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            z-index: 9999;
+            backdrop-filter: blur(2px);
+        }
+
+        @media (max-width: 870px) {
+            #no-fullscreen-popup {
+                max-width: 90vw;
+                padding: 16px;
+                font-size: 15px;
+                margin: 0 8px;
+            }
+        }
+
     </style>
     """
+
+def get_fullscreen_popup_html():
+    return """
+
+    <div id="popup-overlay"></div>
+    <div id="no-fullscreen-popup">
+        <b>Fullscreen not supported on this device</b><br>
+        If this map is embedded, <a href="?" target="_blank">open it in a new tab</a> for a larger display.
+        <br><button onclick="closePopup()">OK</button>
+    </div>
+
+    """
+
 # Removes unwanted underline from SVG links:
 def remove_underline():
     return """

@@ -49,32 +49,41 @@ window.onload = function() {
     // Adding event listener to full screen button:
     let fullscreen_button = document.getElementById("full-screen-button");
     fullscreen_button.addEventListener("click", function(){
-        if (isFullscreenActive) {
-            if (document.exitFullscreen) {
-                document.exitFullscreen();
-            } else if (document.webkitExitFullscreen) {  // iOS Safari
-                document.webkitExitFullscreen();
-            } else if (document.mozCancelFullScreen) {   // Firefox
-                document.mozCancelFullScreen();
-            } else if (document.msExitFullscreen) {      // IE/Edge
-                document.msExitFullscreen();
-            }
-            isFullscreenActive = false;
-        } else {
-            // enter fullscreen with vendor prefixes
-            const elem = document.documentElement;
-            if (elem.requestFullscreen) {
-                elem.requestFullscreen();
-            } else if (elem.webkitRequestFullscreen) {   // iOS Safari, Chrome
-                elem.webkitRequestFullscreen();
-            } else if (elem.mozRequestFullScreen) {      // Firefox
-                elem.mozRequestFullScreen();
-            } else if (elem.msRequestFullscreen) {       // IE/Edge
-                elem.msRequestFullscreen();
-            }
-            isFullscreenActive = true;
-        }
-    })
+
+if (isFullscreenActive) {
+        // Exit works everywhere
+        if (document.exitFullscreen) document.exitFullscreen();
+        else if (document.webkitExitFullscreen) document.webkitExitFullscreen();
+        else if (document.mozCancelFullScreen) document.mozCancelFullScreen();
+        else if (document.msExitFullscreen) document.msExitFullscreen();
+        isFullscreenActive = false;
+        return;
+    }
+    
+    // Check support BEFORE enter
+    if (!document.fullscreenEnabled && 
+        !document.webkitFullscreenEnabled && 
+        !document.mozFullScreenEnabled && 
+        !document.msFullscreenEnabled) {
+        // Show your pure HTML popup or alert
+        showNoFullscreenPopup();  // Your function
+        // OR simple alert: alert('Fullscreen unsupported on this device. Use new tab.');
+        return;
+    }
+    
+    // Enter fullscreen (supported)
+    const elem = document.documentElement;
+    if (elem.requestFullscreen) {
+        elem.requestFullscreen();
+    } else if (elem.webkitRequestFullscreen) {
+        elem.webkitRequestFullscreen();
+    } else if (elem.mozRequestFullScreen) {
+        elem.mozRequestFullScreen();
+    } else if (elem.msRequestFullscreen) {
+        elem.msRequestFullscreen();
+    }
+    isFullscreenActive = true;
+    });
 
     // Run on load:
     detectMobile(mq);
@@ -135,3 +144,13 @@ function detectMobile(e) {
 
 // MediaQueryList:
 const mq = window.matchMedia('(max-width: 575px)');
+
+function showNoFullscreenPopup() {
+    document.getElementById('no-fullscreen-popup').style.display = 'block';
+    document.getElementById('popup-overlay').style.display = 'block';
+}
+
+function closePopup() {
+    document.getElementById('no-fullscreen-popup').style.display = 'none';
+    document.getElementById('popup-overlay').style.display = 'none';
+}

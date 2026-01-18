@@ -27,6 +27,10 @@ def build_map(map_name: str, location: Sequence[float], zoom_start:int) -> foliu
     web_page_html = elements.web_frame_html("https://www.sculpture.org.nz/about-the-trust/overview#content-wrap")
     m.get_root().html.add_child(Element(web_page_html))
 
+    # Fullscreen popup html:
+    fullscreen_popup_html = elements.get_fullscreen_popup_html()
+    m.get_root().html.add_child(Element(fullscreen_popup_html))
+
     # Live location:
     LocateControl(
         auto_start=False,
