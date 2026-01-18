@@ -24,7 +24,6 @@ def global_css():
 
         /* Optimizing for mobile devices: */
         @media only screen and (max-width: 870px) {
-
             /* Hide web panel */
             #web-panel {
                 display: none;
@@ -44,55 +43,63 @@ def global_css():
             }
         }
 
-        .menu-toggle-container {
+        .menu-toggle-container,
+        .full-screen {
             position: fixed !important;
             bottom: 12px !important;
-            right: 50px !important;
             z-index: 9999 !important;
-            border: none !important;
-            box-shadow: 0 1px 5px rgba(0,0,0,0.4) !important;
-            background: rgba(255,255,255,0.8) !important;
-        }
-
-        .menu-toggle-container:hover {
-            background: rgba(255,255,255,0.95) !important;
-            box-shadow: 0 1px 7px rgba(0,0,0,0.5) !important;
-        }
-
-        .menu-toggle {
-            background: none !important;
-            border: none !important;
+            width: 30px !important;
+            height: 30px !important;
             padding: 3px !important;
             margin: 0 !important;
-            width: 30px;
-            height: 30px;
-            cursor: pointer;
-        }
-
-        .eye-svg-toggle {
-            position: relative;
-            width: 24px;
-            height: 24px;
-        }
-
-        .eye-svg-toggle svg {
-            position: absolute;
-            inset: 0;
-            stroke: #333 !important;
-        }
-
-        .full-screen {
+            line-height: 1 !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
             border: none !important;
             box-shadow: 0 1px 5px rgba(0,0,0,0.4) !important;
             background: rgba(255,255,255,0.8) !important;
+            right: 50px !important;
         }
 
+        #full-screen-button {
+            right: 12px !important;
+        }
+
+        .menu-toggle-container:hover,
         .full-screen:hover {
             background: rgba(255,255,255,0.95) !important;
             box-shadow: 0 1px 7px rgba(0,0,0,0.5) !important;
         }
 
+        .menu-toggle,
+        .full-screen button {
+            width: 100% !important;
+            height: 100% !important;
+            padding: 0 !important;
+            margin: 0 !important;
+            background: none !important;
+            border: none !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            cursor: pointer;
+        }
+
+        .eye-svg-toggle,
         .full-screen svg {
+            width: 24px !important;
+            height: 24px !important;
+            display: block !important;
+        }
+
+        .eye-svg-toggle {
+            position: relative;
+        }
+
+        .eye-svg-toggle svg {
+            position: absolute;
+            inset: 0;
             stroke: #333 !important;
         }
 
@@ -113,42 +120,42 @@ def hide_menu_toggle():
 
     <script src="script.js"></script>
     <div class="leaflet-bar leaflet-control leaflet-control-custom menu-toggle-container">
-    <button 
-        id="menu-toggle" 
-        class="menu-toggle"
-        aria-label="Toggle Menu" 
-        title="Hide/show menu"
-    >
-        <div class="eye-svg-toggle">
-            <svg id="open-eye-svg" 
-                xmlns="http://www.w3.org/2000/svg" 
-                width="24" height="24" 
-                viewBox="0 0 24 24" 
-                fill="none" 
-                stroke="#333" 
-                stroke-width="2" 
-                stroke-linecap="round" 
-                stroke-linejoin="round">
-                <path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0"/>
-                <circle cx="12" cy="12" r="3"/>
-            </svg>
-            <svg id="closed-eye-svg" 
-                xmlns="http://www.w3.org/2000/svg" 
-                width="24" height="24" 
-                viewBox="0 0 24 24"
-                fill="none" 
-                stroke="#333" 
-                stroke-width="2" 
-                stroke-linecap="round" 
-                stroke-linejoin="round">
-                <path d="M10.733 5.076a10.744 10.744 0 0 1 11.205 6.575 1 1 0 0 1 0 .696 10.747 10.747 0 0 1-1.444 2.49"/>
-                <path d="M14.084 14.158a3 3 0 0 1-4.242-4.242"/>
-                <path d="M17.479 17.499a10.75 10.75 0 0 1-15.417-5.151 1 1 0 0 1 0-.696 10.75 10.75 0 0 1 4.446-5.143"/>
-                <path d="m2 2 20 20"/>
-            </svg>
-        </div>
-    </button>
-</div>
+        <button 
+            id="menu-toggle" 
+            class="menu-toggle"
+            aria-label="Toggle Menu" 
+            title="Hide/show menu"
+        >
+            <div class="eye-svg-toggle">
+                <svg id="open-eye-svg" 
+                    xmlns="http://www.w3.org/2000/svg" 
+                    width="24" height="24" 
+                    viewBox="0 0 24 24" 
+                    fill="none" 
+                    stroke="#333" 
+                    stroke-width="2" 
+                    stroke-linecap="round" 
+                    stroke-linejoin="round">
+                    <path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0"/>
+                    <circle cx="12" cy="12" r="3"/>
+                </svg>
+                <svg id="closed-eye-svg" 
+                    xmlns="http://www.w3.org/2000/svg" 
+                    width="24" height="24" 
+                    viewBox="0 0 24 24"
+                    fill="none" 
+                    stroke="#333" 
+                    stroke-width="2" 
+                    stroke-linecap="round" 
+                    stroke-linejoin="round">
+                    <path d="M10.733 5.076a10.744 10.744 0 0 1 11.205 6.575 1 1 0 0 1 0 .696 10.747 10.747 0 0 1-1.444 2.49"/>
+                    <path d="M14.084 14.158a3 3 0 0 1-4.242-4.242"/>
+                    <path d="M17.479 17.499a10.75 10.75 0 0 1-15.417-5.151 1 1 0 0 1 0-.696 10.75 10.75 0 0 1 4.446-5.143"/>
+                    <path d="m2 2 20 20"/>
+                </svg>
+            </div>
+        </button>
+    </div>
 
     """
 
