@@ -74,10 +74,10 @@ def hide_menu_toggle():
     <div style="
         position: fixed;
         bottom: 12px;
-        right: 12px;
+        right: 50px;
         z-index: 9999;
         background-color: white;
-        padding: 10px 10px;
+        padding: 3px;
         border-radius: 5px;
         box-shadow: 0 0 5px rgba(0,0,0,0.3);
         font-family: Arial, sans-serif;
@@ -95,8 +95,8 @@ def hide_menu_toggle():
         ">
             <div class="eye-svg-toggle">
                 <svg xmlns="http://www.w3.org/2000/svg" id="open-eye-svg" 
-                    width="28" 
-                    height="28" 
+                    width="24" 
+                    height="24" 
                     viewBox="0 0 24 24" 
                     fill="none" 
                     stroke="currentColor" 
@@ -108,8 +108,8 @@ def hide_menu_toggle():
                     <circle cx="12" cy="12" r="3"/>
                 </svg>
                 <svg xmlns="http://www.w3.org/2000/svg" id="closed-eye-svg" 
-                    width="28" 
-                    height="28" 
+                    width="24" 
+                    height="24" 
                     viewBox="0 0 24 24"
                     fill="none" 
                     stroke="currentColor" 
@@ -338,4 +338,40 @@ def nav_bar():
                 <span style="color: #ff8e7f;">&#9679;</span> <a href="meridian_energy_wind_sculpture_walk.html">Meridian Energy Wind Sculpture Walk</a><br>
             </div>
         </div>
+    """
+
+def full_screen_button():
+    return """
+
+    <button 
+        class="full-screen"
+        id="full-screen-button" 
+        title="Enter fullscreen"
+        aria-label="Enter fullscreen"
+        style="
+            position: fixed;
+            bottom: 12px;
+            right: 12px;
+            z-index: 9999;
+            background-color: white;
+            padding: 3px;
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(0,0,0,0.3);
+            font-family: Arial, sans-serif;
+        "
+    >
+        <svg 
+            xmlns="http://www.w3.org/2000/svg" 
+            width="24" height="24" 
+            viewBox="0 0 24 24" 
+            fill="none" 
+            stroke="currentColor" 
+            stroke-width="2" 
+            stroke-linecap="round" 
+            stroke-linejoin="round" 
+            class="lucide lucide-fullscreen-icon lucide-fullscreen">
+            <path d="M3 7V5a2 2 0 0 1 2-2h2"/><path d="M17 3h2a2 2 0 0 1 2 2v2"/><path d="M21 17v2a2 2 0 0 1-2 2h-2"/><path d="M7 21H5a2 2 0 0 1-2-2v-2"/><rect width="10" height="8" x="7" y="8" rx="1"/>
+        </svg>
+    </button>
+
     """

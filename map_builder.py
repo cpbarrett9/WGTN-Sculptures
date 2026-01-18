@@ -7,6 +7,7 @@ import branca
 from folium import Element
 from folium.plugins import LocateControl
 from folium.plugins import Search
+from folium.plugins import Fullscreen
 
 #
 #   'map_builder': Contains functions that return sculpture maps based on specifications.
@@ -42,11 +43,12 @@ def build_map(map_name: str, location: Sequence[float], zoom_start:int) -> foliu
     m.get_root().html.add_child(Element(attribution))
 
     # Creating and adding menu visibility toggle:
-    hide_menu_toggle = elements.hide_menu_toggle();
+    hide_menu_toggle = elements.hide_menu_toggle()
     m.get_root().html.add_child(Element(hide_menu_toggle))
 
     # Creating and adding fullscreen toggle:
-    # code here
+    full_screen_button = elements.full_screen_button()
+    m.get_root().html.add_child(Element(full_screen_button))
 
     # Creating an adding navigation bar to page:
     nav = elements.nav_bar()

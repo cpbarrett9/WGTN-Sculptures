@@ -7,6 +7,9 @@ var navigation;
 var open_eye_svg;
 var closed_eye_svg;
 
+var fullscreen_button; // <- Fullscreen button + boolean
+var isFullscreenActive = false;
+
 // onClick function for menu toggle button:
 window.onload = function() {
 
@@ -39,6 +42,19 @@ window.onload = function() {
 
         }
     );
+
+    // Adding event listener to full screen button:
+    let fullscreen_button = document.getElementById("full-screen-button");
+    fullscreen_button.addEventListener("click", function(){
+        if (isFullscreenActive) {
+            document.exitFullscreen();
+            isFullscreenActive = false;
+        }
+        else {
+            document.documentElement.requestFullscreen();
+            isFullscreenActive = true;
+        }
+    })
 
     // Run on load:
     detectMobile(mq);
