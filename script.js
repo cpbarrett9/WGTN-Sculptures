@@ -126,4 +126,4 @@ function detectMobile(e) {
 }
 
 // MediaQueryList:
-const mq = window.matchMedia('(max-width: 870px)');
+const mq = window.matchMedia('(max-width: 768px)');
