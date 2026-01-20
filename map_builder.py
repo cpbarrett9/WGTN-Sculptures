@@ -24,7 +24,16 @@ def build_map(map_name: str, location: Sequence[float], zoom_start:int) -> foliu
         )
     
     # Creating and adding Wellington Sculpture Trust web page as iframe:
-    web_page_html = elements.web_frame_html("https://www.sculpture.org.nz/about-the-trust/overview#content-wrap")
+    match map_name:
+        case "wellington_city_walk":
+            web_frame_link = "https://www.sculpture.org.nz/walks/wellington-city-walk#content-wrap"
+        case "botanic_garden_walk":
+            web_frame_link = "https://www.sculpture.org.nz/walks/botanic-garden-walk#content-wrap"
+        case "meridian_energy_wind_sculpture_walk":
+            web_frame_link = "https://www.sculpture.org.nz/walks/the-meridian-energy-wind-sculpture-walk#content-wrap"
+        case _:
+            web_frame_link = "https://www.sculpture.org.nz/about-the-trust/overview#content-wrap"
+    web_page_html = elements.web_frame_html(web_frame_link)
     m.get_root().html.add_child(Element(web_page_html))
 
     # Fullscreen popup html:
