@@ -33,7 +33,7 @@ def build_map(map_name: str, location: Sequence[float], zoom_start:int) -> foliu
 
     # Live location:
     LocateControl(
-        auto_start=False,
+        auto_start=True,
         setView=False
     ).add_to(m)
 
