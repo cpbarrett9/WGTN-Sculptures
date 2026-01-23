@@ -428,7 +428,9 @@ def web_frame_html(page: str):
                     height: 470px;
                     border: none;
                 "
-            ></iframe>
+            >
+                This browser does not support iframes. Please open this page on Chrome, Firefox, Microsoft Edge, Safari, Opera, or another <a href="https://caniuse.com/?search=iframe">browser that supports iframes</a>.
+            </iframe>
         </div>
     """
 
