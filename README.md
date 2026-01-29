@@ -1,4 +1,4 @@
-<h1>Overview</h1>
+<h1><a href="https://cpbarrett9.github.io/wellington-sculpture-map/">Wellington Sculpture Map</a></h1>
 
 This project is an interactive map of public sculptures in Wellington, New Zealand.
 The dataset is based on the Wellington Sculpture Trust’s collection, and was
