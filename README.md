@@ -26,6 +26,7 @@ the website’s four pages, and a general information panel in the bottom left
 
 Languages & Libraries:
 - Python + Folium, Pandas, & Pytest Libraries
+- JavaScript
 - HTML
 - CSS
 
