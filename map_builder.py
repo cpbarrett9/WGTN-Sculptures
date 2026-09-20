@@ -24,9 +24,9 @@ CARTO_ATTRIBUTION = (
 )
 
 
-# Returns the CARTO voyager raster tile URL, keyed when CARTO_API_KEY is set:
+# Returns the CARTO Positron raster tile URL, keyed when CARTO_API_KEY is set:
 def get_tile_url() -> str:
-    url = "https://basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}.png"
+    url = "https://basemaps.cartocdn.com/rastertiles/light_all/{z}/{x}/{y}.png"
     api_key = os.getenv("CARTO_API_KEY")
     return f"{url}?key={api_key}" if api_key else url
 
