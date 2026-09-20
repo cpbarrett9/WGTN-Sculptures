@@ -1,4 +1,5 @@
 from typing import Sequence
+import os
 import folium
 from pathlib import Path
 import pandas as pd
@@ -7,10 +8,27 @@ import branca
 from folium import Element
 from folium.plugins import LocateControl
 from folium.plugins import Search
+from dotenv import load_dotenv
 
 #
 #   'map_builder': Contains functions that return sculpture maps based on specifications.
 #
+
+BASE_DIR = Path(__file__).resolve().parent
+
+load_dotenv(BASE_DIR / ".env")
+
+CARTO_ATTRIBUTION = (
+    '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> '
+    'contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
+)
+
+
+# Returns the CARTO voyager raster tile URL, keyed when CARTO_API_KEY is set:
+def get_tile_url() -> str:
+    url = "https://basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}.png"
+    api_key = os.getenv("CARTO_API_KEY")
+    return f"{url}?key={api_key}" if api_key else url
 
 # Returns a folium map of the given sculpture collection:
 def build_map(map_name: str, location: Sequence[float], zoom_start:int) -> folium.Map:
@@ -19,7 +37,8 @@ def build_map(map_name: str, location: Sequence[float], zoom_start:int) -> foliu
     m = folium.Map(
             location=location,
             zoom_start=zoom_start,
-            tiles='CartoDB Positron',
+            tiles=get_tile_url(),
+            attr=CARTO_ATTRIBUTION,
             attributionControl=False
         )
     
@@ -67,7 +86,6 @@ def build_map(map_name: str, location: Sequence[float], zoom_start:int) -> foliu
     m.get_root().html.add_child(Element(nav))
 
     # Getting correct CSV path:
-    BASE_DIR = Path(__file__).resolve().parent
     CSV_PATH = BASE_DIR / "data" / "sculpture_database.csv"
 
     # Creating dataframe from CSV:
